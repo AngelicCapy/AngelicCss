@@ -1,4 +1,12 @@
-$String: "Hello World !";
-$Number: 52;
-$Float: 2.01;
-$Bool: true;
+$String: "HelloWorld!"; 
+$Number: 52; 
+        $Float: 2.01; 
+$Bool: true; 
+
+@if (Number > 52) { 
+    test 
+} @else if (Number > 52) { 
+    test 
+} @else { 
+    test 
+} 

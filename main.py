@@ -39,31 +39,44 @@ def Write(files, AcssContent): # Each Line of the File -> Transformed Line -> Wr
 
 def modification(line):
     #<==Space Detection==>
-    Space = False
-    if line[1] == "    ":
-        Space = True
-    line = "".join(line).split()
-    
+    size = 0
+    if len(line) >= 2: 
+        if "    " in line[1]:
+            size = len(line[1]) // 4
+        line = "".join(line).split()
+
 
 
     #<==Variable Case==>
     if "=" in line: #a = "Hello World" -> $a: "Hello World";
-        if Space:
-            line[0] = "    " + "$"+line[0] + ":"
-        else:
-            line[0] = "$"+line[0] + ":"
-        line[1] = " ".join(line[2:]) +";"+"\n"
+        line[0] = "$"+line[0] + ":"
+        line[1] = "".join(line[2:]) +";"
         line = line[0:2]
         
 
 
-    #<==IF-ELSEIF-ELSE==>
-    if len(line) >= 2 and line[0] == "if":
-        line[0] = "@if(" + "".join(line[1:]).replace(":","") + ") {"
+    #<==IF-ELIF-ELSE==>
+
+    if len(line) >= 1 and line[0] == "if":
+        line[0] = "@if (" + " ".join(line[1:]).replace(":","") + ") {"
         line[1:] = []
 
+    if len(line) >= 1 and line[0] == "elif" :
+        line[0] = "} @else if (" + " ".join(line[1:]).replace(":","") + ") {"
+        line[1:] = []
+    
+    if len(line) >= 1 and line[0] == "else:":
+        line = ["} @else {"]
+
+    
+    if line == ["end"]:
+        line = ["}"]
 
 
+
+    #<==Intedention Application==>
+    line+=["\n"]
+    line[0] = size*"    " + line[0]
     return line
 
 #<============================================================================>
