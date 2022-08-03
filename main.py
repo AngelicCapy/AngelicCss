@@ -22,10 +22,10 @@ def Read(files): # Files -> Each Line of the File
     return AcssContent
 
 def Write(files, AcssContent): # Each Line of the File -> Transformed Line -> Write in the CSS File
-    Css = open(files.replace("acss","css"), "w")
+    Css = open(files.replace("acss","scss"), "w")
     for line in AcssContent:
-        line = modification(line)
-        Css.write(line)
+        line = modification(line.split())
+        Css.write(" ".join(line))
     Css.close()
 
 #<============================================================================>
@@ -38,7 +38,18 @@ def Write(files, AcssContent): # Each Line of the File -> Transformed Line -> Wr
 #<============================================================================>
 
 def modification(line):
-    #In Coming
+    #<==Variable Case==>
+    if len(line) == 3 and line[1] == "=": #a = "Hello World" -> $a: "Hello World";
+        line[0] = "$" + line[0] + ":" 
+        line[1] = line[2] + ";"+"\n"
+        line = line[0:2]
+
+
+    #<==IF-ELSEIF-ELSE==>
+    if len(line) >= 2 and line[0] == "if":
+        line[0] = "@if (" + " ".join(line[1:]).replace(":","") + ") {"
+        line[1:] = []
+
     return line
 
 #<============================================================================>
@@ -54,7 +65,7 @@ def main(): # Locate every .acss -> Read the File -> Transform the Line -> Write
     for files in File:
         AcssContent = Read(files)
         Write(files, AcssContent)
-        sleep(0.1)
+        sleep(5)
 
 
 #<============================================================================>

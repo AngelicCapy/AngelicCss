@@ -1,3 +1,3 @@
-a{
-    &²
-}azdazdaaaed
+a = "test"
+test = 0
+if a > 2:
