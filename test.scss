@@ -3,10 +3,15 @@ $Number: 52;
         $Float: 2.01; 
 $Bool: true; 
 
-@if (Number > 52) { 
-    test 
-} @else if (Number > 52) { 
-    test 
+
+@if ($Number > 52) { 
+    $test 
+} @else if ($Number > 52) { 
+    $test 
 } @else { 
-    test 
+    $test 
+} 
+
+@for $a from 0 through 2 { 
+    $action 
 } 
