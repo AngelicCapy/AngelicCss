@@ -1,55 +1,73 @@
+#<============================================================================>
+#<============================>Module Importer<===============================>
+#<============================================================================>
 import os
+import re
 from time import sleep
 
-File = [i for i in os.listdir() if i.endswith(".acss") ]
+#<============================================================================>
 
 
-def modification(line):
-    if line.startswith("ID:"):
-        line = line.replace("ID:", "#")
-    if line.startswith("CLASS:"):
-        line = line.replace("CLASS:", ".")
-    if line.startswith("TAG:"):
-        line = line.replace("TAG:", "")
-    if line.startswith("ATTRIBUTE:"):
-        line = line.replace("ATTRIBUTE:", "")
 
 
-    return line
+#<============================================================================>
+#<===============================>Fonctions<==================================>
+#<============================================================================>
 
-for files in File:
+
+def Read(files): # Files -> Each Line of the File
     Acss = open(files, "r")
-    Acss_content = Acss.readlines()
-    print(Acss_content)
+    AcssContent = Acss.readlines()
     Acss.close()
+    return AcssContent
+
+def Write(files, AcssContent): # Each Line of the File -> Transformed Line -> Write in the CSS File
     Css = open(files.replace("acss","css"), "w")
-    for line in Acss_content:
+    for line in AcssContent:
         line = modification(line)
         Css.write(line)
     Css.close()
 
-
-
-
-"""
-def read_file(file):
-    Acss = open(files, "r")
-    Acss_content = Acss.read()
-    Acss.close()
-    return Acss_content
-
-def write_file(files, content):
-    Acss = open(files, "w")
-    Acss.write(content)
-    Acss.close()
-    
+#<============================================================================>
 
 
 
 
-while True:
+#<============================================================================>
+#<================================>Syntaxe<===================================>
+#<============================================================================>
+
+def modification(line):
+    #In Coming
+    return line
+
+#<============================================================================>
+
+
+
+#<============================================================================>
+#<==========================>Fonction Principale<=============================>
+#<============================================================================>
+
+def main(): # Locate every .acss -> Read the File -> Transform the Line -> Write the CSS File
+    File = [i for i in os.listdir() if i.endswith(".acss") ]
     for files in File:
-        content = read_file(files)
-        write_file(files.replace("acss","css"), content)
-    sleep(0.1)
-"""
+        AcssContent = Read(files)
+        Write(files, AcssContent)
+        sleep(0.1)
+
+
+#<============================================================================>
+
+
+
+
+
+#<============================================================================>
+#<===========================>Boucle Principale<==============================>
+#<============================================================================>
+
+while True: # Redo main in infinite
+    main()
+
+#<============================================================================>
