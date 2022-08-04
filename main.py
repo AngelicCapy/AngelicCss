@@ -54,8 +54,8 @@ def modification(line):
         line = line[0:2]
     #<==Keyword Case==>
     for i in Variable:
-        line = ["$"+j for j in line if i in j:line[line.index(j)] = ]
-    
+        for j in line: 
+            if i in j:line[line.index(j)] = "$"+j
     #<==IF-ELIF-ELSE==>
     if len(line) >= 1 and line[0] == "if":
         line[0] = "@if (" + " ".join(line[1:]).replace(":","") + ") {"
@@ -80,16 +80,11 @@ def modification(line):
     # In Coming Soon
 
     
-    #object
-    #use
-    #import 
-    #Mixin
-    #Includes
-    #Extends
+
+
     #each
-    #Class
-    #Id
-    #Function
+    
+    
     
 
     # End
@@ -98,7 +93,7 @@ def modification(line):
 
 
 
-    #<==Intedention Application==>
+    #<==Indentation Application==>
     line+=["\n"]
     line[0] = size*"    " + line[0]
     return line

@@ -1,9 +1,54 @@
-Hey
+## Bienvenue Sur AngelicCSS !
+
+### Explication :
+
+AngelicCSS est un traducteur d'une nouvelle syntaxe de SCSS purement imaginer par moi-même.
+Cette Syntaxe est grandement inspirer des langages Python et Ruby, Afin d'offrir une syntaxe purement original pour les personnes n'appréciant pas le SCSS ou CSS souhaitant trouver une alternative.
 
 
-Avancement v1 : 
+### Avancement :
+
+
+#### Programmation Logique :
+
+- [x] Indentation
 - [x] Variable
-- [ ] if,else if,else
-- [ ] for loop
-- [ ] while loop
+- [x] Formatage Automatiques Des Variables 
+- [x] Condition
+- [x] Boucle For
+- [x] Boucle While
+- [ ] Boucle Each
+- [ ] Objets
 - [ ] Function 
+
+
+#### Syntaxe CSS :
+
+- [ ] Class
+- [ ] Id
+- [ ] Import
+- [ ] Media
+- [ ] Supports
+- [ ] Keyframes
+
+#### Syntaxe SCSS :
+
+- [ ] Use
+- [ ] Mixins and Includes
+- [ ] Includes
+- [ ] Extends
+- [ ] AtRoot
+- [ ] Error
+- [ ] Warn
+- [ ] Debug
+
+
+#### Extension VsCode :
+
+- [ ] AngelicCSS Live Change
+- [ ] AngelicCSS Syntax Problem Detection
+- [ ] AngelicCSS Logical Problem Detection
+
+
+Developpement Framework Avec Fonction intégrer Prévue pour la V2
+
