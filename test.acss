@@ -1,17 +1,4 @@
-String = "Hello World !"
-Number = 52
-        Float = 2.01
-Bool = true
-
-
-if Number > 52:
-    test
-elif Number > 52:
-    test
-else:
-    test
-end
-
-for a in 0..2:
-    action
-end
+string = "hello"
+a = 5
+string += 1
+a>2

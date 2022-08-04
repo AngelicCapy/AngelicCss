@@ -36,8 +36,7 @@ def Write(files, AcssContent): # Each Line of the File -> Transformed Line -> Wr
 #<============================================================================>
 #<================================>Syntaxe<===================================>
 #<============================================================================>
-
-keyword = [".","#","if","elif","else:","end","=","for","while","do","end","return","break","continue","pass","import","from","as","global","nonlocal","assert","del","raise","try","except","finally","with","yield","lambda","and","or","not","in","is","is not","for","in","not","not in","if","elif","else:","end","=","for","while","do","end","return","break","continue","pass","import","from","as","global","nonlocal","assert","del","raise","try","except","finally","with","yield","lambda","and","or","not","in","is","is not","for","in","not","not in","if","elif","else:","end","=","for","while","do","end","return","break","continue","pass","import","from","as","global","nonlocal","assert","del","raise","try","except","finally","with","yield","lambda","and","or","not","in","is","is not","for","in","not","not in","if","elif","else:","end","=","for","while","do","end","return","break","continue","pass","import","from","as","global","nonlocal","assert","del","raise","try","except","finally","with","yield","lambda","and","or","not","in","is","is not","for","in","not","not in","if","elif","else:","end","=","for","while","do","end","return","break","continue","pass","import","from","as","global","nonlocal","assert","del","raise","try","except","finally","with","yield","lambda","and","or","not","in","is","is not","for","in","not","not in","if","elif","else:","end","=","for","while","do","end","return","break","continue","pass","import","from","as","global","nonlocal","assert","del","raise","try","except","finally","with","yield","lambda","and","or","not","in","is","is not","for","in","not","not in","if","elif","else:","end","=","for","while","do","end","return","break","continue","pass",""]
+Variable = []
 
 def modification(line):
     #<==Space Detection==>
@@ -48,14 +47,15 @@ def modification(line):
         line = "".join(line).split()
     #<==Variable Case==>
     if "=" in line: #a = "Hello World" -> $a: "Hello World";
-        line[0] = "$"+line[0] + ":"
+        if line[0] not in Variable:
+            Variable.append(line[0])
+        line[0] = line[0] + ":"
         line[1] = "".join(line[2:]) +";"
         line = line[0:2]
     #<==Keyword Case==>
-    for i in line:
-        if i not in keyword and i[0] !="$" and i[0] != '"' and i[0] != "'" and i[0].isdigit() == False and not "false" in i and not "true" in i and i[0]!="#" and i[0]!=".":
-            line = line[:line.index(i)] + ["$"+i] + line[line.index(i)+1:]
-            break
+    for i in Variable:
+        line = ["$"+j for j in line if i in j:line[line.index(j)] = ]
+    
     #<==IF-ELIF-ELSE==>
     if len(line) >= 1 and line[0] == "if":
         line[0] = "@if (" + " ".join(line[1:]).replace(":","") + ") {"
@@ -71,14 +71,15 @@ def modification(line):
     if len(line) >= 1 and line[0] == "for":
         line[3] = line[3].split("..")
         line = ["@for " + line[1] + " from " + line[3][0] + " through " + line[3][1][0:-1] + " {" ]
-
-
-
-
+    #<==While==>
+    if len(line) >= 1 and line[0] == "while":
+        line[-1] = line[-1][:-1]
+        line[0] = "@while (" + " ".join(line[1:]) + ") {"
+        line[1:] = []
 
     # In Coming Soon
 
-    #while
+    
     #object
     #use
     #import 
@@ -115,7 +116,7 @@ def main(): # Locate every .acss -> Read the File -> Transform the Line -> Write
     for files in File:
         AcssContent = Read(files)
         Write(files, AcssContent)
-        sleep(1)
+        sleep(10)
 
 
 #<============================================================================>
