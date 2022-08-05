@@ -19,7 +19,7 @@ Cette Syntaxe est grandement inspirer des langages Python et Ruby, Afin d'offrir
 - [x] Boucle While
 - [x] Boucle Each
 - [x] Tableau
-- [ ] Maps
+- [x] Maps
 - [ ] Function 
 
 
