@@ -49,15 +49,20 @@ def modification(line):
     if "=" in line: #a = "Hello World" -> $a: "Hello World";
         if line[0] not in Variable:
             Variable.append(line[0])
-        if line[2][0] != "[": 
+        if line[2][0] != "[" and line[2][0] != "{": 
             line[0] = line[0] + ":"
             line[1] = "".join(line[2:]) +";"
             line = line[0:2]
         #<==Array==>
-        else:
+        elif line[2][0] == "[":
+
             line[0] = line[0] + ":"
             line[1] = ",".join(line[2].split(",")).replace("[","(").replace("]",")") +";"
             line = line[0:2]
+        else:
+            line[0] = line[0] + ":"
+            line[1] = "".join(line[2:]).replace("=",":").replace("{","(").replace("}",")") +";"
+            line = line[0:2]     
     #<==Keyword Case==>
     for i in Variable:
         for j in line: 

@@ -1,2 +1,3 @@
 string = "hello"
-a = ["a","b","test","a]
+a = ["a","b","test","a"]
+b = {"a" = "test", "b" = "a"}
