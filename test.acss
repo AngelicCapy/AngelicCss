@@ -1,4 +1,12 @@
 string = "hello"
 a = 5
-string += 1
-a>2
+sizes = 5
+
+
+for i in 0..5:
+    do
+end
+
+for each size in sizes:
+    do
+end

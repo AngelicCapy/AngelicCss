@@ -69,26 +69,19 @@ def modification(line):
         line = ["}"]
     #<==For Loop==>
     if len(line) >= 1 and line[0] == "for":
-        line[3] = line[3].split("..")
-        line = ["@for " + line[1] + " from " + line[3][0] + " through " + line[3][1][0:-1] + " {" ]
+        if len(line) <= 4:
+            line[3] = line[3].split("..")
+            line = ["@for " + "$"+line[1] + " from " + line[3][0] + " through " + line[3][1][0:-1] + " {" ]
+        #<==Each==>
+        else:
+            line = ["@each " + "$"+line[2] + " in " + line[4][:-1] + " {" ]
+
     #<==While==>
     if len(line) >= 1 and line[0] == "while":
         line[-1] = line[-1][:-1]
         line[0] = "@while (" + " ".join(line[1:]) + ") {"
         line[1:] = []
-
-    # In Coming Soon
-
     
-
-
-    #each
-    
-    
-    
-
-    # End
-
 
 
 
