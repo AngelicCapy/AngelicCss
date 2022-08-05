@@ -17,7 +17,7 @@ Cette Syntaxe est grandement inspirer des langages Python et Ruby, Afin d'offrir
 - [x] Condition
 - [x] Boucle For
 - [x] Boucle While
-- [ ] Boucle Each
+- [x] Boucle Each
 - [ ] Objets
 - [ ] Function 
 
