@@ -49,13 +49,20 @@ def modification(line):
     if "=" in line: #a = "Hello World" -> $a: "Hello World";
         if line[0] not in Variable:
             Variable.append(line[0])
-        line[0] = line[0] + ":"
-        line[1] = "".join(line[2:]) +";"
-        line = line[0:2]
+        if line[2][0] != "[": 
+            line[0] = line[0] + ":"
+            line[1] = "".join(line[2:]) +";"
+            line = line[0:2]
+        #<==Array==>
+        else:
+            line[0] = line[0] + ":"
+            line[1] = ",".join(line[2].split(",")).replace("[","(").replace("]",")") +";"
+            line = line[0:2]
     #<==Keyword Case==>
     for i in Variable:
         for j in line: 
-            if i in j:line[line.index(j)] = "$"+j
+            if i in j and "'" not in j and '"' not in j:
+                line[line.index(j)] = "$"+j
     #<==IF-ELIF-ELSE==>
     if len(line) >= 1 and line[0] == "if":
         line[0] = "@if (" + " ".join(line[1:]).replace(":","") + ") {"
@@ -74,8 +81,9 @@ def modification(line):
             line = ["@for " + "$"+line[1] + " from " + line[3][0] + " through " + line[3][1][0:-1] + " {" ]
         #<==Each==>
         else:
-            line = ["@each " + "$"+line[2] + " in " + line[4][:-1] + " {" ]
-
+            line[2] = line[2].split(",")
+            line[2] = ["$"+i for i in line[2]]
+            line = ["@each " + ",".join(line[2]) + " in " + line[-1][:-1] + " {" ]
     #<==While==>
     if len(line) >= 1 and line[0] == "while":
         line[-1] = line[-1][:-1]

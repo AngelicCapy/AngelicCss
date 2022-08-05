@@ -1,12 +1,2 @@
 string = "hello"
-a = 5
-sizes = 5
-
-
-for i in 0..5:
-    do
-end
-
-for each size in sizes:
-    do
-end
+a = ["a","b","test","a]

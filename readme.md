@@ -18,7 +18,8 @@ Cette Syntaxe est grandement inspirer des langages Python et Ruby, Afin d'offrir
 - [x] Boucle For
 - [x] Boucle While
 - [x] Boucle Each
-- [ ] Objets
+- [x] Tableau
+- [ ] Maps
 - [ ] Function 
 
 

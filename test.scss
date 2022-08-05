@@ -1,12 +1,2 @@
 $string: "hello"; 
-$a: 5; 
-$sizes: 5; 
-
-
-@for $i from 0 through 5 { 
-    do 
-} 
-
-@each $size in $sizes { 
-    do 
-} 
+$a: ("a","b","test","a); 
