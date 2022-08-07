@@ -94,10 +94,11 @@ def modification(line):
         line[-1] = line[-1][:-1]
         line[0] = "@while (" + " ".join(line[1:]) + ") {"
         line[1:] = []
-    
-    
-
-
+    #<==Function==>
+    if len(line) >= 1 and line[0] == "def":
+        line[-1] = line[-1][:-1]
+        line[0] = "@function " 
+        print(line)
 
 
     #<==Indentation Application==>
